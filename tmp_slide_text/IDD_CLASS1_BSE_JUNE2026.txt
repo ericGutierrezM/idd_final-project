@@ -1,0 +1,551 @@
+
+--- PAGE 1 ---
+June 2022
+Module 2: Intelligent Data Driven Applications on 
+the Cloud 
+From notebooks to production-ready, AI-enabled applications
+INTELLIGENT DA TA DEVELOPMENT , JUNE 2026
+
+
+--- PAGE 2 ---
+ABOUT ME
+DATA SCIENCE DIRECTOR
+@PEPSICO
+LAURA COZMA
+Education
+• Master in Data Science, BSE - 2015
+• Master in Economic Analysis, UAB - 2010 
+• Bachelor in Economics - Cybernetics, 
+Statistics and Business Information Systems, 
+Alexandru Ioan Cuza University, Romania - 2008 
+(Major: Computer Science. Minor: Economics)
+Specialties
+• Data Science
+• Machine Learning
+• Data Engineering
+• Cloud Architecture (AWS Solutions Architect)
+Kaggle ML Competitions Expert
+Current Focus
+Building and scaling production-grade forecasting and
+AI/data science systems in enterprise environments.
+2
+Experience
+Data Science Director, PepsiCo (12.2022 – present)
+• In charge of leading the IBP Data Science Europe Deployment
+• Keywords: Azure Cloud, Databricks, Pyspark
+Senior Manager, PepsiCo (06.2021 –12.2022)
+• In charge of leading the IBP data science Iberia pilot
+• Keywords: Azure Data Factory, Databricks, PowerBI, Pyspark
+Data Strategy Lead, Ailylabs (02-05.2021)
+• In charge of leading the data team and building up the AILY data strategy vision
+• Keywords: AWS: Redshift, Postgres, EC2, Lambda, API Gateway,
+CloudFormation; Python
+Analyst– Manager, Accenture (09.2015-01.2021)
+• Palantir and AWS Data Integration @ Aerospace Company
+• Keywords: AWS: EC2, Lambda, API Gateway, CloudFormation; Palantir: Code 
+Authoring, Phonograph; Python, Pyspark 
+• Foundry Slate Apps Industrialization @ Aerospace Company
+• Keywords: Palantir: Code Authoring, Slate, Phonograph; Python, Pyspark
+• Connected Factory @ Manufacturer
+• Keywords: AWS: Lambda, S3, IoT, Kinesis, Redshift, SageMaker, Python
+
+--- PAGE 3 ---
+WHY IS THE IDD COURSE SO IMPORTANT
+3
+This course gives you the foundations to grow from 
+“doing data science” to building intelligent, AI-
+enabled applications.
+When I started my career in 2015, I wish I had been 
+exposed earlier to concepts like Git, Cloud, software 
+engineering, deployment, and production-ready data 
+science. At that time, many of these practices were still 
+emerging in our field.
+Today, the acceleration is even stronger. With the rise of 
+Generative AI, copilots, and intelligent agents, data 
+scientists are expected not only to build models, but to 
+design systems that use data and AI to solve real 
+problems end to end.
+IDD is important because it connects the dots: data, 
+engineering, cloud, AI, and product thinking.
+
+--- PAGE 4 ---
+THE INDUSTRY SHIFT - FROM DATA SCIENCE TO AI-ENABLED APPLICATIONS
+4
+AI accelerates development, but it also increases the need for engineering 
+discipline.
+Then Now Next
+Notebook analysis Production ML systems AI-enabled applications
+Manual experiments Automated pipelines Copilots and Agents
+Local models Cloud deployment Human-in-the-loop systems
+One-off outputs Monitored products Continuous intelligence
+AI changes:
+• How fast we can generate code
+• How fast we can prototype
+• How easily we can access explanations
+• How users interact with data products
+• How applications can automate workflows
+AI does not remove the need for:
+• Clear requirements
+• Good data quality
+• Version control
+• Testing
+• Cloud architecture
+• Monitoring
+• Responsible deployment
+• Human judgment
+
+--- PAGE 5 ---
+MLOPS
+WHAT IS THIS COURSE ABOUT
+5
+This course is about giving you the building blocks to move from idea to production. A real intelligent 
+data application needs more than an ML model.
+How do we use 
+AI safely and 
+professionally?
+PRODUCT THINKING AGILE DELIVERY DEVOPS DATAOPS
+CLOUD AI READINESS
+What problem are 
+we solving? For 
+whom? How will 
+success be 
+measured?
+How do we 
+organize work 
+under 
+uncertainty?
+How do we train, 
+deploy, monitor, 
+and keep/improve 
+models 
+performance?
+How do we move 
+from code to 
+reliable software?
+How do we 
+make data 
+reliable, timely, 
+and usable?
+How do we 
+run and 
+scale the 
+solution?
+
+--- PAGE 6 ---
+MODULE MAP & EVALUATION
+6
+MODULE MAP
+• Part 1: Data-driven Intelligence through DataOps and MLOps (class 1-2)
+• Part 2: Cloud as a catalyst for data driven intelligence (class 3)
+• Part 3: Hands on - Set up of cloud infrastructure for Forecasting (class 3 - 4)
+• Part 4: Things change: Know why – Real Use Case Example @Pepsico (class 5)
+MODULE EVALUATION
+Weight Owner Evaluation mode
+Final project 60% Javier + Laura Team grade
+Javier in-class 
+exercises 20% Javier Individual / binary 
+completion
+Laura in-class 
+exercises 20% Laura Team grade
+
+--- PAGE 7 ---
+AI POLICY
+7
+AI Policy
+In-class exercises - AI tools are not allowed.
+Final project
+AI tools may be used as support, but students remain fully responsible for the final solution.
+• AI usage must be disclosed.
+• AI prompts / interaction history must be shared as part of the submission.
+• AI-generated outputs must be reviewed, validated, and adapted by the students.
+• No AI assistance is allowed during the video explanation or any follow-up clarification questions.
+• Both students must speak in the video, with camera on.
+• Professors may ask follow-up questions to validate understanding.
+
+--- PAGE 8 ---
+FINAL PROJECT - DEPLOYING A FORECASTING MODEL FOR GLOVO
+8
+• Team: Groups of 2 students. Groups of 3 allowed only by exception.
+• Due date: 28th of June
+• Evaluation: The final project represents 60% of the module grade. The four project deliverables are equally weighted within the final
+project.
+• Project repository: https://github.com/javiermas/bse -ts-public
+• AI policy: AI allowed with disclosure, validation, and shared prompt history.
+Project: The goal of the project is to deploy an AWS cloud solution that trains a model and generates predictions of orders using Glovo data.
+Deliverables:
+• Code
+• In any format, as long as it runs in the cloud. You may use any cloud-based compute environment of your choice.
+• Video (max 10 minutes)
+• A walkthrough of your code and cloud setup. Ideally, you run the code on the cloud and generate an output file in the video. If your
+job takes longer than 10 minutes, you don’t need to show the entire process—use caching where helpful. For recording the video,
+you may use any tool if you can share a link or file. If your tool limits video length, you can submit two clips.
+• Predictions – A .csv file with out-of-sample predictions (format described below), stored in S3
+• Prod deployment considerations
+• Section (PDF – max 5 pages) describing concepts thought in this part of the course: Define team(s) and their roles, interactions 
+and ways of working. Define rough estimates for each part/ feature of the project and how these estimates were agreed. Define the 
+architecture components of the end-to-end solution. Define data used and data flows (i.e. how data travels from the 
+Storage/Database to your “forecasting tool” and connects to a visualization tool). Describe and argument environments to be used. 
+Describe how the build and monitor of the ML Model will happen. Describe how the end-users will use your solution (visualization 
+tool, interactive platform, etc.). Describe success KPIs.
+
+--- PAGE 9 ---
+FINAL PROJECT - DEPLOYING A FORECASTING MODEL FOR GLOVO CNT
+9
+Business requirements
+You’ve just joined Glovo. The company uses a slot-based system, dividing each day into 24 hourly slots per city. For efficient operations,
+Glovo needs to predict the optimal number of couriers required in each slot. Overestimating leads to idle couriers and wasted resources;
+underestimating causes delivery delays.
+Currently, Operations manually determines these numbers based on past demand, but as Glovo expands, this manual process no longer
+scales. Your task is to help automate it by forecasting hourly order volumes.
+To simplify, we’ll focus on one city only. Every Sunday at 23:59, your model should forecast the number of orders expected in each
+hourly slot for the upcoming week (from Monday 00:00 to Sunday 23:00, inclusive). You may use all data up to and including the current
+week to generate your forecast.
+EDA
+• The data is under data/train_data.csv. Explore the data, visualize it. Look for trends, cycles and seasonality. Also, can you find any
+outliers? How does your EDA inform your modelling?
+Modelling
+• Try different models. Validate each model in a way that would imitate the real problem (every Sunday you forecast all next week). Watch
+out for data leakage. Evaluate each model on MSE and SMAPE. Which one performs better?
+Output format
+• A .csv file with columns: time (hourly resolution), datetime64[ns] type and preds: float64 type, 24*7 rows (7 days worth of predictions)
+Going from 2022-01-24 00:00:00 to 2022-01-30 23:00:00 (both inclusive)
+• You can check your output format with the function provided to you in the github repository. There might be some check we’ve missed, so
+make sure the output is what you want it to be.
+
+--- PAGE 10 ---
+June 2022
+Part 1: Data-driven Intelligence through DataOps & 
+MLOps
+INTELLIGENT DA TA DEVELOPMENT , JUNE 2026
+
+
+--- PAGE 11 ---
+CONCEPTS COVERED – ZOOM IN
+11
+AGILE & DEVOPS
+DATAOPS
+MLOPS
+Traditionally, machine learning has been approached from a perspective
+of individual scientific experiments predominantly carried out in
+isolation by data scientists.
+However, as machine learning models become part of real-world
+solutions and critical to business, we will have to shift our perspective,
+not to depreciate scientific principles but to make them more easily
+accessible, reproducible and collaborative .
+We can achieve accessibility, reproducibility and collaboration in data
+science through agile methodologies - we iteratively improve flexibility
+and adaptability in project development and through implementing
+DevOps workflow - automated testing and continuous integration enhance
+collaboration and efficiency in teams.
+
+--- PAGE 12 ---
+13
+AGILE 
+&
+DEVOPS
+AGILE PRODUCT DELIVERY AND DEVOPS
+Any time we talk about best practices or approaches to 
+plan and deliver successful software , you'll hear the terms 
+agile and DevOps.
+Agile and DevOps they both try to fix very specific 
+problems, problems encountered again and again using 
+the software planning and development methods that 
+were typical from, let's say, the 1950s, all the way through 
+the 1990s.  
+
+--- PAGE 13 ---
+AGILE PRODUCT DELIVERY
+14
+WHAT IS AGILE?
+”Agile is an iterative approach to project management
+and software development that helps teams deliver
+value to their customers faster and with fewer
+headaches. Instead of betting everything on a "big
+bang" launch, an agile team delivers work in small, but
+consumable, increments.”
+ATLASSIAN
+
+--- PAGE 14 ---
+15
+THE WATERFALL MODEL 
+• A breakdown of project activities into a formalized highly structure linear sequential phases, usually 5 or 6, where each phase 
+depends on the deliverables of the previous one and corresponds to a specialization of tasks.
+• It allows for departmentalization and control . A schedule can be set with deadlines for each stage of development and a product 
+can proceed through the development process model phases one by one.
+• From collecting requirements to the time the software was finally deployed, years had often passed. It's entirely possible that the 
+original requirements have changed or they weren't even properly understood.
+ANALYZE
+PLAN
+DESIGN
+BUILD
+TEST
+DEPLOY
+Deployment
+TestingDevelopingDesigningRequirements 
+Gathering
+Output: Documentation
+Timelines: Weeks/ 
+Months
+Output: Documentation
+Timelines: Weeks/ 
+Months
+Output: Code
+Timelines: Weeks/ 
+Months
+Output: Test cases, 
+bugs
+Timelines: Weeks
+
+--- PAGE 15 ---
+WATERFALL VS AGILE
+16
+ANALYZE PLAN DESIGN BUILD TEST DEPLOY
+AGILE
+WATERFALL
+ANALYZE PLAN DEPLOY
+ ANALYZE PLAN DEPLOY
+DESIGN BUILD
+TEST
+DESIGN BUILD
+TEST
+Agile was developed as a response to Waterfall’s more rigid structure. Given a software development project can take years to
+complete, technology can change significantly during that time. Agile was developed as a flexible method that welcomes incorporating
+changes of direction even late in the process, as well as accounting for stakeholders’ feedback throughout the process.
+
+--- PAGE 16 ---
+17
+AGILE VS WATERFALL AND WHY AGILE FITS DATA SCIENCE
+Waterfall:
+• Linear, sequential model with fixed phases (e.g., requirements → design → build → test)
+• Limited adaptability once project starts
+• Not ideal for evolving Data/DS/AI projects
+Agile:
+• Iterative and incremental development
+• Embraces change and continuous feedback
+• Designed for flexibility, collaboration, and faster delivery
+Why Agile Fits Data Science
+• Data projects evolve with discoveries; Agile allows adapting to new insights quickly.
+• DS projects are exploratory by nature and rarely have fixed outputs
+• Agile allows quick iteration and fast feedback
+• Helps prioritize features/models based on business value
+• Encourages frequent stakeholder engagement
+• Drives delivery of incremental insights, not just final models
+
+--- PAGE 17 ---
+AGILE FRAMEWORKS OVERVIEW
+18
+AGILE
+SCRUM
+KANBAN
+XP
+Agile is a
+mindset.
+Scrum, Kanban, XP (Extreme 
+Programming) are
+Agile frameworks.
+Scrum and Kanban are the 
+frameworks mostly used in 
+data science projects.
+Kanban methodology: Visual board, continuous delivery → best for
+support/sustain teams or evolving tasks
+Scrum framework: Sprints, structured roles, ceremonies → best for well -
+defined project cycles
+XP (Extreme Programming) : Engineering-heavy, rarely used in DS
+
+--- PAGE 18 ---
+SCRUM – CORE CONCEPTS
+19
+Scrum Board Example, Atlassian
+Roles: Product Owner (PO), Scrum Master (SM), Team
+Events: Sprint Planning, Daily Standup, Sprint Review, 
+Retrospective
+Artifacts: Product Backlog, Sprint Backlog, Increment
+Sprints are time-boxed (1–4 weeks) with clear outcomes
+Emphasis on team ownership, transparency, and "Definition of 
+Done"
+
+--- PAGE 19 ---
+SCRUM - ROLES
+20
+SCRUM MASTERPRODUCT OWNER TEAM
+• Create and refine user stories and
+acceptance criteria
+• Define, build, test and deliver stories
+• Develop the PI
+• Objectives Iteration plans
+• 5-11 members
+• Coaches the agile team and facilitates
+team meetings
+• Remove impediments and protects the
+team from outside influence
+• Attends scrum of scrum meetings
+• Defines and accepts user stories
+• Acts as the customers for developer
+questions
+• Works with Product Management to
+plan PIs (Product Increment)
+
+
+--- PAGE 20 ---
+SCRUM – EVENTS & ARTEFACTS
+21
+SCRUM
+METHODOLOGY
+DAILY 
+STANDUP
+• Recursive event: team members determine how
+much of the team backlog they can commit to
+delivering.
+• Output: List of stories committed with clearly
+defined acceptance criteria.
+• Frequence: every 1-4 weeks
+SPRINT 
+PLANNING
+PRODUCT 
+INCREMNENT
+SPRINT 
+REVIEW
+SPRINT 
+RETRO
+BACKLOG
+• Retrospective is used by Agile teams to reflect on
+the iteration just completed and to come up with
+ideas to improve team involvement and processes.
+• Can have different formats: “what went well”, “to
+improve”, “Actions/Kudos”
+• The Sprint Review is an inspect and adapt point at the end of the Sprint. 
+• Business Owners, stakeholders assess what has been built during the 
+sprint and discuss changes and new ideas. 
+• The teams, Product Owner and stakeholders decide the direction of the 
+product.
+• Daily meeting to assess team progress
+• Agenda:
+• What did I do yesterday? 
+• What is the plan for today? 
+• Are there any blocking points to be 
+addressed?
+• The Team Backlog contains user and enabler
+stories that originate from the Program Backlog, as
+well as stories that arise locally from the team’s
+local context.
+• The Product Owner (PO) is responsible for the team 
+backlog.
+• Recursive fase-to-fase event where all teams work with the product 
+owners on features and user stories they can commit
+• Contains 5 sprints, last sprint is usally the innovation sprint
+• Frequence: every 10 weeks, might vary 
+
+--- PAGE 21 ---
+SCRUM – DEFINITION OF DONE
+23
+DONE means is live in production 
+and our customers can use it.
+DONE means I have finished coding 
+and it is ready to be tested.
+!=
+
+--- PAGE 22 ---
+24
+SCRUM – HOW WE TRACK WORK
+EPIC
+Feature
+User Story
+• In Agile, work is structured to aid in the development & delivery of a product.
+• They should not be defined/created to map to a business process. 
+These are two different areas of focus when implementing a solution.
+• The three most used elements are - Epics, Features, and User Stories.
+• Epics represent a major capability/scope of the product that can be 
+broken down into small parts. Epics are commonly completed in less 
+than 3 – 6 months.
+• Features represent a key aspect of the product and allows readers to 
+understand clearly what part of the product is built. Feature are 
+commonly completed in less than 12 weeks.
+• User Stories are a small building block of a Feature that clearly 
+identifies a specific scope of work. A user story can be fully 
+designed/built/tested in less than a sprint. It is usually owned by one 
+single person with limited support needed by others.
+
+--- PAGE 23 ---
+KANBAN – CORE CONCEPTS
+25
+Visualize tasks as cards on a board (e.g., To Do → In Progress → 
+Done)
+Use WIP limits to prevent overloading team
+Emphasize flow over iteration
+No defined sprints; ideal for ongoing analysis, support, or 
+experimentation
+Pros: Simplicity, visibility, continuous delivery
+Cons: Less structure, can become chaotic without discipline
+Kanban Board Example, Atlassian
+
+
+--- PAGE 24 ---
+SCRUM/KANBAN - WORKING SESSION – 35’ + 20’ PRESENTATION 
+27
+Goal: Simulate how a data science teamwould plan a forecasting project using theScrum/Kanban framework.
+Task -35’:
+• Scrum: Each team (pair of 2) needs to create and populate their corresponding EPIC (a big goal or deliverable) and break it into FEATURES – functional blocks that can be delivered in 2-3 weeks. 
+Split each feature into User Stories and estimate the amount of time needed. Use story points (1 = easy, 5 = complex) orhours- Multiply by 2 your time estimates. Plan a Sprint (2-week cycle): 
+What subset of User Stories can the team commit to in one sprint?
+• Kanban: Set up a Kanban board containing the below stages of work: Backlog (Tasks to be done), To Do (Tasks ready to start), In Progress (Tasks currently being worked on), Testing (Tasks to 
+be tested), Done (Completed tasks). Add task cards (should represent concrete DS activities) and set WIP limits.  Review flow and adjust. Ask: Is anything stuck? Where’s the bottleneck? 
+Discuss how the team would coordinate to unblock flow
+• Share-out: 5’ per team
+• Team 1: Data acquisition, cleansing and preprocessing (EPIC)
+• Ideas:
+• Explore where to find free API holiday and weather data (FEATURE)
+• Gather promo and price information from internal sources (commercial) (FEATURE)
+• Understand where to find sales data. (FEATURE)
+• Propose cleansing methodologies (handling missing values, outlier removal, remove/or 
+not outliers that are known events as strikes, customer clashed etc) (FEATURE)
+• Team 1: Exploratory Data Analysis and Health Checks on data (EPIC)
+• Ideas:
+• Perform analysis to understand correlation with sales for holidays, weather, promotion 
+data and price(FEATURE)
+• Generate visualizations year-over-year to see whether Easter, Christmas, Black Friday 
+etc. have impacts on sales (FEATURE)
+• Create a list of health checks for the data (i.e. data should have the defined structure, 
+primary and foreign key enforcements, etc). (FEATURE)
+• Team 2: Feature Engineering (EPIC)
+• Ideas:
+• Features for sales (lags, trend, seasonality, yearly average, total sales by category, 
+rolling means, variances, data/time features etc) (FEATURE)
+• Features for holidays (lags, long weekends, holiday flag, etc) (FEATURE)
+• Features for promotions (cannibalization of most similar product, on promo flag, promo 
+discount etc) (FEATURE)
+• Features for price (price flag, price increase of more than 50% etc) (FEATURE)
+• Team 2: Model Selection and Training (EPIC)
+• Ideas:
+• Define what models will be used (time series, Machine Learning, Deep Learning 
+etc)(FEATURE)
+• Hyperparameter tuning and feature selection. (FEATURE)
+• Training and Testing of each model (FEATURE)
+• Team 3: Data acquisition, cleansing and preprocessing
+• Ideas:
+• Explore where to find free API holiday and weather data
+• Gather promo and price information from internal sources (commercial)
+• Understand where to find sales data.
+• Propose cleansing methodologies (handling missing values, outlier removal, 
+remove/or not outliers that are known events as strikes, customer clashed etc)
+• Team 3: Exploratory Data Analysis and Health Checks on data
+• Ideas:
+• Perform analysis to understand correlation with sales for holidays, weather, 
+promotion data and price.
+• Generate visualizations year-over-year to see whether Easter, Christmas, Black 
+Friday etc. have impacts on sales.
+• Create a list of health checks for the data (i.e. data should have the defined 
+structure, primary and foreign key enforcements, etc).
+• Team 4: Feature Engineering
+• Ideas:
+• Features for sales (lags, trend, seasonality, yearly average, total sales by category, 
+rolling means, variances, data/time features etc)
+• Features for holidays (lags, long weekends, holiday flag, etc)
+• Features for promotions (cannibalization of most similar product, on promo flag, 
+promo discount etc)
+• Features for price (price flag, price increase of more than 50% etc)
+• Team 4: Model Selection and Training
+• Ideas:
+• Define what models will be used (time series, Machine Learning, Deep Learning 
+etc).
+• Hyperparameter tuning and feature selection.
+• Training and Testing of each model.

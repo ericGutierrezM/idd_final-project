@@ -1,0 +1,116 @@
+
+--- PAGE 1 ---
+June 2022
+Module 2: Intelligent Data Driven Applications on 
+the Cloud – FINAL PROJECT
+INTELLIGENT DA TA DEVELOPMENT , JUNE 2026
+
+
+--- PAGE 2 ---
+FINAL PROJECT - DEPLOYING A FORECASTING MODEL FOR GLOVO
+2
+• Team: Groups of 2 students. Groups of 3 allowed only by exception.
+• Due date: 28th of June
+• Evaluation: The final project represents 60% of the module grade. The four project deliverables are equally weighted within the final
+project.
+• Project repository: https://github.com/javiermas/bse -ts-public
+• AI policy: AI allowed with disclosure, validation, and shared prompt history.
+Project: The goal of the project is to deploy an AWS cloud solution that trains a model and generates predictions of orders using Glovo data.
+Deliverables:
+• Code
+• In any format, as long as it runs in the cloud. You may use any cloud-based compute environment of your choice.
+• Video (max 10 minutes)
+• A walkthrough of your code and cloud setup. Ideally, you run the code on the cloud and generate an output file in the video. If your
+job takes longer than 10 minutes, you don’t need to show the entire process—use caching where helpful. For recording the video,
+you may use any tool if you can share a link or file. If your tool limits video length, you can submit two clips.
+• Predictions – A .csv file with out-of-sample predictions (format described below), stored in S3
+• Prod deployment considerations
+• Section (PDF – max 5 pages) describing concepts thought in this part of the course: Define team(s) and their roles, interactions
+and ways of working. Define rough estimates for each part/ feature of the project and how these estimates were agreed. Define the
+architecture components of the end-to-end solution. Define data used and data flows (i.e. how data travels from the
+Storage/Database to your “forecasting tool” and connects to a visualization tool). Describe and argument environments to be used.
+Describe how the build and monitor of the ML Model will happen. Describe how the end-users will use your solution (visualization
+tool, interactive platform, etc.). Describe success KPIs.
+
+--- PAGE 3 ---
+FINAL PROJECT - DEPLOYING A FORECASTING MODEL FOR GLOVO CNT
+3
+Business requirements
+You’ve just joined Glovo. The company uses a slot-based system, dividing each day into 24 hourly slots per city. For efficient operations,
+Glovo needs to predict the optimal number of couriers required in each slot. Overestimating leads to idle couriers and wasted resources;
+underestimating causes delivery delays.
+Currently, Operations manually determines these numbers based on past demand, but as Glovo expands, this manual process no longer
+scales. Your task is to help automate it by forecasting hourly order volumes.
+To simplify, we’ll focus on one city only. Every Sunday at 23:59, your model should forecast the number of orders expected in each
+hourly slot for the upcoming week (from Monday 00:00 to Sunday 23:00, inclusive). You may use all data up to and including the current
+week to generate your forecast.
+EDA
+• The data is under data/train_data.csv. Explore the data, visualize it. Look for trends, cycles and seasonality. Also, can you find any
+outliers? How does your EDA inform your modelling?
+Modelling
+• Try different models. Validate each model in a way that would imitate the real problem (every Sunday you forecast all next week). Watch
+out for data leakage. Evaluate each model on MSE and SMAPE. Which one performs better?
+Output format
+• A .csv file with columns: time (hourly resolution), datetime64[ns] type and preds: float64 type, 24*7 rows (7 days worth of predictions)
+Going from 2022-01-24 00:00:00 to 2022-01-30 23:00:00 (both inclusive)
+• You can check your output format with the function provided to you in the github repository. There might be some check we’ve missed, so
+make sure the output is what you want it to be.
+
+--- PAGE 4 ---
+CONNECT TO THE AWS ACCOUNT USING AN IAM USER 
+4
+Step-by-step:
+1. Go to the login link: https://idd-
+class.signin.aws.amazon.com/console
+2. Log in using the credentials:
+• Username: name.surname/ 
+name.middlename (or your assigned 
+name on the next slide)
+• Password: ChangeMeNow_2024!
+3. On first login, set a new password you'll 
+remember. A password reset screen will 
+appear. You will need to add the old 
+password provided and add your new one.
+You’re now inside your AWS account!
+
+
+--- PAGE 5 ---
+USERS
+5
+Student Username
+Alexander Han Yi alexander-han-yi
+Charley Cisse Baker charley-cisse-baker
+Corneel Henri L. Moons corneel-henri-l-moons
+Dmitrii Kuptsov dmitrii-kuptsov
+Elvis Teodoro Casco Alfaro elvis-teodoro-casco-alfaro
+Eric Gutierrez Moreno eric-gutierrez-moreno
+Erika Yazmín Blanco Félix erika-yazmin-blanco-felix
+Gal·la Gelpí Buxadé galla-gelpi-buxade
+Gavin Robert Budd gavin-robert-budd
+Grace Alden Hotchkiss grace-alden-hotchkiss
+Jillian Ann Hunter jillian-ann-hunter
+Joshua Ramas Castillo joshua-ramas-castillo
+Luis David Batista Tomé luis-david-batista-tome
+Maria Victoria Suriel Nuñez maria-victoria-suriel-nunez
+Mariajose Argote Corrales mariajose-argote-corrales
+Matthieu David Ludovic Hildreth matthieu-david-ludovic-hildreth
+Nicolas Aris Koutalakis nicolas-aris-koutalakis
+Olsa Berani olsa-berani
+Olta Recica olta-recica
+Ronnie Kwadwo Obeng-osei ronnie-kwadwo-obeng-osei
+Samuel Gerard Fraley samuel-gerard-fraley
+Sebastian Dong Uk Paik Sohn sebastian-dong-uk-paik-sohn
+Sofia Pirogova sofia-pirogova
+Tizian Schenk tizian-schenk
+Xiaoyan Wang xiaoyan-wang
+
+--- PAGE 6 ---
+USEFUL INFORMATION
+6
+1. S3 buckets: <name>-<surname>-bucket-idd, i.e. laura-cozma-bucket-idd
+1. Please upload test_data_mock.csv and train_data.csv before trying to test the lambda function.
+2. Lambda function: 
+1. Name: <name>-<surname>-forecasting-lambda
+2. Runtime: Python 3.X
+3. Execution role: assigned
+4. Layers: pandas, skitlearn

@@ -1,0 +1,603 @@
+
+--- PAGE 1 ---
+June 2022
+Module 2: Intelligent Data Driven Applications on 
+the Cloud 
+INTELLIGENT DA TA DEVELOPMENT , JUNE 2026
+
+
+--- PAGE 2 ---
+June 2022
+Part 3: Cloud as a catalyst for data driven 
+intelligence
+INTELLIGENT DA TA DEVELOPMENT , JUNE 2026
+
+
+--- PAGE 3 ---
+KEY CONCEPTS
+3
+• What is Cloud Computing? Cloud Timelines and Trends
+• Cloud Computing
+o Compare and contrast cloud computing with traditional data centers
+• Know the different cloud deployment models:
+o Public Cloud
+o Private Cloud
+o Hybrid Cloud
+• Most Important Cloud Services
+o Storage
+o Databases
+o Compute
+o Machine Learning
+o Analytics
+
+--- PAGE 4 ---
+CLOUD COMPUTING
+4
+• WHAT IS CLOUD 
+COMPUTING?
+“Cloud computing is the on-demand 
+delivery of compute power, database 
+storage, applications and other IT 
+resources through a cloud services 
+platform via the Internet with pay-as-
+you-go pricing.”
+AMAZON WEB SERVICES
+
+--- PAGE 5 ---
+7
+CLOUD TRENDS 1
+“The shift to the cloud has only accelerated over the past years due to COVID-19, as organizations responded to a new business 
+and social dynamic . Technology and service providers that fail to adapt to the pace of cloud shift face increasing risk of becoming 
+obsolete or, at best, being relegated to low -growth markets.” 
+Michael Warrilow, Research VP at Gartner
+
+
+--- PAGE 6 ---
+8
+CLOUD TRENDS 2
+“The shift to the cloud has only accelerated over the past two years due to COVID-19, as organizations responded to a new 
+business and social dynamic . Technology and service providers that fail to adapt to the pace of cloud shift face increasing risk of 
+becoming obsolete or, at best, being relegated to low -growth markets.” 
+Michael Warrilow, Research VP at Gartner
+
+
+--- PAGE 7 ---
+9
+CLOUD TRENDS 3 – BEYOND THE BIG 4
+
+
+--- PAGE 8 ---
+10
+WHY IS CLOUD SO POWERFUL
+REAL WORLD 
+SCENARIO
+• Launching a new demand forecasting process 
+for the company. 
+• The demand planning process is focused on a 
+geography and a Pilot is deployed in Spain.
+• Looking to expand across all market units if 
+successful in Spain.
+• Securing funding for the initial infrastructure. 
+Consumer Good Company
+
+--- PAGE 9 ---
+11
+TRADITIONAL DATA CENTERS
+MareNostrum SuperComputing Center, Barcelona
+Traditional Data Center - facility/space of networked 
+computers and associated components(like 
+telecommunications and storage) which helps business and 
+organisations to function a large amount of data
+Characteristics:
+• Large up-front investment
+• High maintenance cost (done by data center employees)
+• Scaling up requires huge investments (forecasting demand 
+is difficult)
+• Deploying new data centers and servers takes time (slow 
+provisioning)
+• Owning security and compliance
+• The organization’s developers are trusted for the data 
+stored in data centers
+• Performance is less than compared to investment
+• It is easily customizable without any hard plan
+• It may and may not require an internet connection
+• Data Centers require experienced developers to operate 
+and are considered not a viable option
+
+--- PAGE 10 ---
+12
+CLOUD VS TRADITIONAL DATACENTERS
+Characteristics:
+• Less upfront investment
+• Less maintenance cost since is the service providers 
+maintain it
+• Benefit from massive economies of scale  - Scaling up 
+required less amount of investment and deploying new data 
+centers takes minutes (stop guessing capacity)
+• The service provider owns the security of the cloud, you 
+own security in the cloud
+• Third-Party needs to be trusted for the organization’s data 
+to be stored
+• Performance is huge as compared with investment
+• It requires a plan to customize the cloud
+• It requires a stable internet connection to provide the 
+function
+• Cloud is easy to operate and is considered a viable option
+Amazon Data Center
+
+
+--- PAGE 11 ---
+13
+WHY IS CLOUD SO POWERFUL
+WHAT IMPACT 
+DOES THE CLOUD 
+HAVE ON ALL 
+BUSINESSES?
+• Access to almost infinitely scalable 
+computing power data storage, without 
+the need for an expensive investment 
+upfront.
+• Cloud is redefining roles in the IT 
+industry, it's merging roles together.
+• Businesses can now spend their time 
+focused on what differentiates them 
+from their competitors and what 
+provides value to their customers.
+
+--- PAGE 12 ---
+16
+CLOUD DEPLOYMENT MODELS
+PRIVATE CLOUD
+Cloud service provided by a 
+third-party provider, hardware is 
+only used by a single company, 
+which many times owns the 
+hardware and data center
+• Capital cost
+• Lack of elasticity
+• Potential latency
+• High overhead
+• High Security
+• Fully customizable
+PUBLIC CLOUD
+Cloud service provided by a 
+third-party provider, hardware 
+can be shared amongst multiple 
+clients
+• No capital cost
+• Elastic  - infinite scalability
+• No latency
+• Low overhead
+• Faster and simpler deployments
+HYBRID CLOUD
+Cloud service provided as a 
+combination between public and 
+private cloud with automation 
+and orchestration between the 
+two
+• Some capital cost
+• Adds elasticity and flexibility
+• Often used to transition to public 
+cloud
+Top Vendors:
+• HPE
+• VMWare
+• Dell
+• IBM/ RedHat
+• Palantir
+Top Vendors: 
+• AWS
+• Microsoft Azure
+• Google Cloud
+Top Vendors: 
+• A combination of private and 
+public cloud providers
+
+--- PAGE 13 ---
+AWS KEY SERVICES
+18
+• Amazon Web Services offers global cloud-based products that enable organizations to move faster, lower IT costs, and scale
+• Currently 238 products split in 21 categories - 11 products launched at re:Invent 2022
+Source: AWS
+STORAGE
+SECURITY , IDENTITY & 
+COMPLIANCE
+SATELLITE
+ROBOTICS
+QUANTUM 
+TECHNOLOGY
+NETWORK & CONTENT 
+DELIVERY
+MIGRA TION & 
+TRANSFER
+MEDIA
+SERVICES
+MANAGEMENT & 
+GOVERNANCE
+FRONT END WEB & 
+MOBILE
+END USER 
+COMPUTER
+DEVELOPER 
+TOOLS
+DATABASE
+CONTAINERS
+COMPUTEANALYTICS
+ APPLICATION 
+INTEGRATION
+AWS COST 
+MANAGEMENT
+BLOCKCHAIN
+MACHINE 
+LEARNING
+IoT
+
+
+--- PAGE 14 ---
+APPLICATION 
+INTEGRATION
+BLOCKCHAIN
+MIGRA TION & 
+TRANSFER
+NETWORK & CONTENT 
+DELIVERY
+SECURITY , IDENTITY & 
+COMPLIANCE
+SATELLITE
+FRONT END WEB & 
+MOBILE
+ IoT
+END USER 
+COMPUTER
+DEVELOPER 
+TOOLS
+ROBOTICS
+QUANTUM 
+TECHNOLOGY
+NETWORK & CONTENT 
+DELIVERY
+MIGRA TION & 
+TRANSFER
+FRONT END WEB & 
+MOBILE
+END USER 
+COMPUTER
+DEVELOPER 
+TOOLS
+IoT
+ MEDIA
+SERVICES
+MANAGEMENT & 
+GOVERNANCE
+CONTAINERS
+AWS COST 
+MANAGEMENT
+APPLICATION 
+INTEGRATION
+BLOCKCHAIN
+AWS KEY SERVICES - FOCUS
+20
+• Amazon Web Services offers global cloud -based products that enable organizations to move faster, lower IT costs, and scale.
+• Currently 226 products split in 21 categories - 7 products launched at re:Invent 2021
+Source: AWS
+STORAGE
+DATABASE
+COMPUTEANALYTICS
+MACHINE 
+LEARNING
+DATABASE
+COMPUTEANALYTICS
+MACHINE 
+LEARNING
+
+
+--- PAGE 15 ---
+AWS KEY SERVICES - FOCUS
+21
+STORAGE
+ DATABASE
+ COMPUTE ANALYTICS
+MACHINE 
+LEARNING
+A service that that allows 
+object storage and 
+offers industry-leading 
+scalability, data 
+availability, security, and 
+performance. 
+Service Examples:
+• Amazon EFS
+• Amazon EBS
+• AWS Snowball
+• AWS Snowmobile
+• Amazon S3
+A service that enables 
+engines to support 
+diverse data models, 
+including relational, key-
+value, document, in-
+memory, graph, time 
+series, wide column, and 
+ledger databases.
+Service Examples:
+• Amazon Aurora
+• Amazon DynamoDB
+• Amazon Neptune
+• Amazon RDS
+A service that enables to 
+leverage cloud-based 
+virtual machines for 
+workloads. This could be 
+serving web content to 
+visitors, running a 
+database, or calculating 
+statistics from a data set.
+Service Examples:
+• Amazon EC2
+• AWS Lambda
+• AWS Outposts (on 
+prems private cloud)
+A service that empowers 
+ML teams to prepare and 
+process data, 
+streamlines cross-team 
+collaboration, and 
+standardizes the full 
+ML lifecycle from 
+experimentation to 
+production.
+Service Examples:
+• Amazon Forecast
+• Amazon SageMaker
+• Amazon Transcribe
+• Amazon Translate
+• AWS DeepComposer
+A service that enables 
+data science teams to 
+deploy end-to-end 
+analytics solutions 
+from data lake formation, 
+to data storage and 
+transport, data 
+warehouse and 
+visualization.
+Service Examples:
+• AWS Lake Formation
+• AWS Glue
+• Amazon Kinesis
+• Amazon Redshift
+• Amazon QuickSight
+
+--- PAGE 16 ---
+CLOUD STORAGE – AWS S3 
+22
+• S3 stands for Simple Storage Service (S3)
+• One of the oldest AWS services - launched in 2006 – and one of the most 
+feature-rich storage platform available 
+• Allows the storage and retrieval of any amount of data (up to 5T)
+• It is easy to set up and easy-to-use
+• Fast and cheap: quickly store and retrieve any amount of data from 
+anywhere on the web at an economical storage cost
+• It is secure - allows encryption
+• Provides different storage classes for different use cases 
+Amazon Simple Storage 
+Service (Amazon S3)
+
+--- PAGE 17 ---
+CLOUD STORAGE - S3 
+23
+• It is object based. Think of objects just as files (i.e. Word documents, 
+movies, pictures, CSVs, parquet files).
+• Objects consist of the following:
+• Key – name of the object
+• Value – data
+• Version
+• Metadata – data about data
+• Sub-resources (access control lists, bucket policies)
+• Files are stored in buckets. A bucket is a folder where you put your files.
+Amazon Simple Storage 
+Service (Amazon S3)
+
+--- PAGE 18 ---
+AWS Lambda
+CLOUD COMPUTE– AWS LAMBDA
+28
+• Serverless architecture is an approach to software design that allows developers 
+to build and run services without having to manage the underlying infrastructure. 
+Fundamental serverless terms :
+• Invocation - Single function execution
+• Duration - Time taken for a lambda function to execute
+• Cold Start - Latency when a function is triggered for the first time / after an inactivity  
+period
+• Concurrency Limit - The number of function instances that can run simultaneously 
+in one region
+• Timeout - The amount of time that a cloud provider allows a function to run before 
+terminating it – 15mins
+Use Cases:
+• Trigger-based tasks
+• Building RESTful APIs
+• Asynchronous processing
+• Security checks
+• Continuous Integration (CI) and Continuous Delivery (CD)
+
+--- PAGE 19 ---
+June 2022
+HANDS ON SESSION
+INTELLIGENT DA TA DEVELOPMENT , JUNE 2026
+
+
+--- PAGE 20 ---
+HANDS-ON CLOUD LAB: DEPLOY A FORECASTING MODEL ON AWS – 90MINS
+33
+Session Goal: Learn to deploy a forecasting model using step by step instructions and Infrastructure as Code ( IaC) on AWS. You’ll build, 
+run, and test a simple ML workflow — all in the cloud.
+What We’ll Do
+We’ll work together to set up a real forecasting pipeline in the cloud: 
+1. You’ll create your own AWS user, deploy cloud storage (S3)
+2. Run a forecasting model using Lambda (a cloud function)
+3. Use Infrastructure as Code (CloudFormation) to launch everything with just one command — giving you hands -on experience with how 
+real-world data science projects are deployed."
+What You’ll Walk Away With
+• You’ll train a model in the cloud and see your forecast results
+• You’ll upload and download files from AWS (just like a data scientist)
+• You’ll understand how cloud tools work together in real projects
+• You’ll learn how to deploy a project with code, not clicks (just like pros do)
+
+--- PAGE 21 ---
+HANDS-ON CLOUD LAB: STEPS
+34
+1. Connect to an AWS account using your IAM user – 10 mins
+2. Create an S3 bucket like idd-class-folder and load data.csv – 10 mins
+3. Create a Lambda function by hand – 20 mins
+4. Link the Lambda to S3 and give it proper permissions – 15 mins
+5. Load data from s3 and save data in csv format into s3 – 20 mins
+6. Launch all above with a CloudFormation template – 15 mins
+
+--- PAGE 22 ---
+HANDS ON SESSION DETAILS
+35
+AWS account: https://idd-class.signin.aws.amazon.com /console
+Access Credentials: 
+• Users: 30 generic users created ” idd2026student1” to “idd2026student30”
+• Password: Initial Password “ChangeMeNow_2024! ”
+S3 Bucket with the following structure:
+• Each student can access only their results.
+• Shared resources are readable by all.
+• No one can access or overwrite another student’s output.
+
+--- PAGE 23 ---
+HANDS ON – STEP 1 - CONNECT TO AN AWS ACCOUNT USING AN IAM USER 
+36
+Step-by-step:
+1. Go to the login link: https://idd-
+class.signin.aws.amazon.com/console
+2. Log in using the credentials:
+• Username: studentuser1 (or your 
+assigned name)
+• Password: the one you received
+3. On first login, set a new password you'll 
+remember. A password reset screen will 
+appear. You will need to add the old 
+password provided and add your new one.
+You’re now inside your AWS account!
+
+
+--- PAGE 24 ---
+HANDS ON – STEP 2 - CREATE AN S3 BUCKET
+37
+We’ll now create a cloud folder (S3 bucket) with versioning, encryption, and private access.
+Steps:
+1. Search for S3 in the top search bar, click S3
+2. Click Create bucket
+3. Name your bucket:
+• student1-folder (replace with your ID), your bucket needs to start with the student1 prefix
+4. Choose your region (e.g., us-east-1)
+5. Under settings:
+• Block Public Access: Keep it ON (all boxes checked)
+• Bucket Versioning: Enable
+• Default Encryption: Enable (use SSE-S3)
+6. Click Create bucket
+
+--- PAGE 25 ---
+HANDS ON – STEP 3 - CREATE A LAMBDA FUNCTION BY HAND
+38
+Step 1: Create an IAM Role for Lambda
+1.Go to IAM > Roles
+2.Click Create role
+3.Choose AWS service → Lambda
+4.Attach the following policies:
+1. AmazonS3FullAccess (or scoped-down access)
+2. AWSLambdaBasicExecutionRole
+5.Name the role (e.g. LambdaS3Role) and create it.
+Step 2: Create the Lambda Function
+1.Go to Lambda → Create function
+2.Choose:
+1. Name: ForecastingFunction
+2. Runtime: Python 3.X
+3. Execution role: Use existing role → select LambdaS3PandasRole
+3.Create the function
+
+--- PAGE 26 ---
+HANDS ON – STEP 3 - CREATE A LAMBDA FUNCTION BY HAND
+39
+Step 3: Edit Lambda 
+Code
+Click Code and paste 
+the following:
+Replace your-input-
+bucket-name and file 
+keys with your actual 
+S3 path.
+Step 4: Test the 
+Lambda
+1.Click Test → Create 
+a test event (can be 
+empty if hardcoded 
+paths are used)
+2.Run the Lambda
+3.Check your S3 
+bucket to confirm the 
+new file is saved
+
+
+--- PAGE 27 ---
+HANDS ON – STEP 3 - CREATE A LAMBDA FUNCTION BY HAND
+40
+Step 5: Package pandas for Lambda - optional
+Lambda has a size limit for inline editing, and pandas isn't included by default. You must deploy with a layer or zip upload.
+Option A: Use a Prebuilt Lambda Layer (Recommended for Console Users)
+Use a public pandas layer:
+1.Visit AWS Lambda Layer Library → Find the pandas layer ARN for your region (e.g. arn:aws:lambda:us-east-
+1:770693421928:layer:Klayers -p39-pandas:1)
+2.Save the ARN for later
+Step 6: Add pandas Layer to Lambda - optional
+1.Open the Lambda function → Click Layers → Add a layer
+2.Choose Specify an ARN
+3.Paste your pandas layer ARN and click Add
+
+--- PAGE 28 ---
+LAMBA CODE
+41
+import json
+import boto3
+import datetime
+import pandas as pd
+from io import StringIO
+def lambda_handler(event, context):
+s3 = boto3.client('s3')
+# Replace with your actual bucket name
+bucket_name= 'student1-bucket-idd'
+input_key = 'input.csv'
+try:
+# Read CSV from S3
+response = s3.get_object(Bucket=bucket_name, Key=input_key)
+content = response['Body'].read().decode('utf-8')
+df = pd.read_csv(StringIO(content))
+# Do any transformation here (this is just a placeholder)
+df_processed= df.copy()
+# Prepare to write back to S3
+timestamp = datetime.datetime.utcnow().isoformat()
+output_key = f"processed/output_{timestamp}.csv"
+csv_buffer = StringIO()
+df_processed.to_csv(csv_buffer, index=False)
+# Upload to S3
+s3.put_object(
+Bucket=bucket_name,
+Key=output_key,
+Body=csv_buffer.getvalue().encode('utf-8')
+)
+return {
+"statusCode": 200,
+"body": json.dumps({
+"message": "CSV processed and saved to S3",
+"bucket": bucket_name,
+"output_key": output_key
+})
+}
+except Exception as e:
+return {
+"statusCode": 500,
+"body": json.dumps({
+"error": str(e)
+})
+}

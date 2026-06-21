@@ -1,0 +1,378 @@
+
+--- PAGE 1 ---
+June 2022
+Module 2: Intelligent Data Driven Applications on 
+the Cloud 
+From notebooks to production-ready, AI-enabled applications
+INTELLIGENT DA TA DEVELOPMENT , JUNE 2026
+
+
+--- PAGE 2 ---
+June 2022
+Part 1: Data-drivenIntelligencethroughDataOps& 
+MLOps
+INTELLIGENT DA TA DEVELOPMENT , JUNE 2026
+
+
+--- PAGE 3 ---
+CONCEPTS COVERED – ZOOM IN
+3
+AGILE & DEVOPS
+DATAOPS
+MLOPS
+DevOps is a set of practices that works to automate and integrate the processes
+between software development and IT teams, so they can build, test, and release
+software faster and more reliably”
+“Agile is an iterative approach to project management and software development
+that helps teams deliver value to their customers faster and with fewer
+headaches. Instead of betting everything on a "big bang" launch, an agile team delivers
+work in small, but consumable,increments.
+ATLASSIAN
+“DataOps is a set of practices, processes and technologies that combines an
+integrated and process-oriented perspective on data with automation and
+methods from agile software engineering to improve quality, speed, and
+collaboration and promote a culture of continuous improvement in the area of data
+analytics.”
+WIKIPEDIA
+“MLOps or ML Ops is a set of practices that aims to deploy and maintain
+machine learning models in production reliably and efficiently. The word is a
+compound of "machine learning" and the continuous development practice of DevOps
+in the software field.”
+WIKIPEDIA
+Agile = how we organize work
+DevOps = how we deploy software
+DataOps = how we deploy data pipelines
+MLOps = how we deploy ML models
+
+--- PAGE 4 ---
+4
+DATAOPS
+DATAOPS
+
+--- PAGE 5 ---
+DATAOPS - DEFINITION
+5
+WHAT IS DATAOPS?
+“DataOps (data operations) refers to practices that
+bring speed and agility to end-to-end data pipelines
+process, from collection to delivery.”
+IBM
+
+--- PAGE 6 ---
+DATAOPS – THE NEW DEVOPS FOR A DATA DRIVEN ORGANIZATION
+6
+DATAOPS = DEVOPS for DATA
+Source: Medium
+DataOps: The New DevOps for a Data-Driven World
+With data being today’s most valuable commodity, companies are embracing DataOps as an integral part of their business
+• Both rely on Big Data and the Cloud
+• Both use advanced process automation for testing, data orchestration, deployment, and continuous monitoring.
+• Both lean on continuous integration and continuous deployment/delivery.
+• Both aim to shorten the duration of release cyclesfor software products and valuable datasets by following key Agile principles.
+• Both target to achieve faster time to market, and release high-quality products
+• The users of DataOps are data teams (data engineers, architects, analysts, scientists, and operations)
+
+--- PAGE 7 ---
+DATAOPS LIFECYCLE
+7
+• Development
+• In DataOps, the step may involve building a new pipeline, changing a data model or redesigning a dashboard.
+• Example: We add a new weather/promotionspipeline.
+• Testing
+• Usually testing includes testing of inputs, outputs and business logic
+• These tests should be performed at each stage of the data analytics pipeline, to ensure that results of the particular data job meet expectations.
+• Example: We validate weather structure, schema, contents, data logic.
+• Deployment
+• This presumes moving data jobs between environments, pushing them to the next stage, or deploying the entire pipeline in production.
+• Many times, given that Production data is not allowed in other environmentsthan PROD, it may be the case that data is pushed in each environmentseparately.
+• Example: We move pipeline into the production environment,by passing from DEV to QA to PREPROD and finally to PROD.
+• Monitoring
+• A must have to ensure data quality,monitoring allows data professionalsto identify bottlenecks, catch abnormal patterns, and measure adoption of changes.
+• Monitoring often relies on AI-driven anomaly detection algorithms.
+• Example: We check data arrives when scheduled and with the right data quality checks in place.
+• Orchestration
+• In the data world, orchestration automates moving data between different stages, monitoring progress, triggering autoscaling, and other operations related to the
+managementof data flows.
+• It covers each stage and the end-to-end data analytics pipeline.
+• Example: Yourchoice orchestrator (Airflow or Azure Data Factory or AWS Step Functions) triggers everything.
+
+
+--- PAGE 8 ---
+DATAOPS – THE NEW DEVOPS FOR A DATA DRIVEN ORGANIZATION
+8
+• Accelerates the ability of data-analytics teams to create and publish new
+analytics solutions to end users, while still being faster, cheaper and higher 
+quality
+• Reduces timeto insight 
+• Improves analytic quality 
+• Lowers the marginal costto ask the next business question 
+• Improves analytic team morale by going beyond hope, heroism and caution 
+• Promotes team efficiency through agile process, reuse and refactoring
+
+--- PAGE 9 ---
+DATAOPS WORKING SESSION – 35’
+9
+Goal: Your Forecasting Model Is Going Live
+Time: 15 minutes
+Work in small teams -> 20 mins to share ideas
+Scenario:
+Monday, 4am. The forecasting engine is about to run. Several data issues have been detected. Your team is 
+responsible for deciding what to do.
+Your Task  - Split into 5 groups, each group will discuss one question and prepare a 2-minute answer.
+• Group 1: Weather data is missing. Should the forecast run? What checks should be in place? Who should be 
+alerted?
+• Group 2: Promotions data contain 0 rows. How do you detect the issue? Should the forecast continue? 
+What is the business impact?
+• Group 3: The Shipments file arrived, but a column name changed. The pipeline fails. How can 
+DataOps prevent this? What controls would you implement?
+• Group 4: The data usually arrives at 2 AM. Today it arrives at 6 AM. The forecast is scheduled for 
+4 AM.
+What should happen? Should the forecast wait? Should it run? How would you automate the decision?
+• Group 5:The data arrives successfully, however, volumes suddenly increase by 300%.
+No errors are reported. How would you detect this? How would you distinguish a true business event 
+from a data quality issue?
+
+--- PAGE 10 ---
+DATAOPS WORKING SESSION – PROPOSED SOLUTION
+10
+Group Incident Proposed Solution
+Group 1 Missing Data— Weather dataset did not arrive
+Add data freshness checksand dependency validation before the forecast runs. If weather 
+is mandatory, stop the run and alert Data Engineering / Forecasting Support. If it is optional, 
+use an approved fallback such as last available weather or historical averages.
+Group 2 Empty Dataset— Promotions table contains 0 rows
+Add row count validationand business rules. If promotions are expected for the 
+market/week, the pipeline should fail fast, block forecast publication, and alert the data 
+owner.
+Group 3 Schema Change— Shipments file arrived but a 
+column name changed
+Implement schema validationand data contracts. The pipeline should check column 
+names, data types, mandatory fields, and expected formats before transformation starts.
+Group 4 Late Data Arrival— Data usually arrives at 2 AM but 
+arrives at 6 AM
+Use dependency-based orchestrationinstead of only time-based scheduling. The forecast 
+should wait until required data is ready, with a defined timeout and escalation process.
+Group 5 Suspicious Data— Volumes suddenly increase by 
+300%
+Add anomaly detection and volume threshold checkscomparing current data with 
+historical patterns. If the increase is abnormal, trigger manual review before allowing the 
+forecast to continue.
+
+--- PAGE 11 ---
+11
+MLOPS
+MLOPS
+
+--- PAGE 12 ---
+MLOPS - DEFINITION
+12
+WHAT IS MLOPS? “MLOps or ML Ops is a set of practices that aims to
+deploy and maintain machine learning models in
+production reliably and efficiently. The word is a
+compound of "machine learning" and the continuous
+development practice of DevOps in the software field.”
+WIKIPEDIA
+
+--- PAGE 13 ---
+MLOPS – REALITY
+13
+87% of Data Science projects never make it to Production 
+Source: VentureBeat, 2019
+
+--- PAGE 14 ---
+MLOPS – MATURITY ACROSS ORGANIZATIONS
+14
+LEVEL DESCRIPTION HIGHLIGHTS TECHNOLOGY
+0 No MLOps
+• Difficult to manage full machine learning model lifecycle
+• The teams are siloed, and releases are painful
+• Most systems exist as "black boxes," little feedback during/post 
+deployment
+• Manual builds and deployments
+• Manual testing of model and application
+• No centralized tracking of model performance
+• Training of model is manual
+1 DevOps but no MLOps
+• Releases are less painful than No MLOps, but rely on Data Team for 
+every new model
+• Still limited feedback on how well a model performs in production
+• Difficult to trace/reproduce results
+• Automated builds
+• Automated tests for application code
+2 Automated Training
+• Training environment is fully managed and traceable
+• Easy to reproduce model
+• Releases are manual, but low friction
+• Automated model training
+• Centralized tracking of model training performance
+• Model management
+3 Automated Model Deployment
+• Releases are low friction and automatic
+• Full traceability from deployment back to original data
+• Entire environment managed: train > test > production
+• Integrated A/B testing of model performance for 
+deployment
+• Automated tests for all code
+• Centralized training of model training performance
+4 Full MLOps Automated 
+Operations
+• Full system automated and easily monitored
+• Production systems are providing information on how to improve 
+and, in some cases, automatically improve with new models
+• Approaching a zero-downtime system
+• Automated model training and testing
+• Verbose, centralized metrics from deployed model
+
+--- PAGE 15 ---
+MLOPS – ML + DATOPS + DEVOPS
+15
+• In classical software development, a version of the code produces a version of the 
+software.
+• The introduction of data changes how code works in the development process but also 
+that data is another aspect that can change. 
+• Data as a new variable in the development process increases complexity drastically , 
+as to reproduce results you need to be able to reproduce the data that you used. 
+• The matter of versioning both data and code becomes increasingly complex when 
+you start thinking about whole machine learning systems which have steps for data 
+preparation, augmentation and generation.
+• In MLOps a version of the code and a version of the data together produce a 
+version of the ML model. 
+Data versioning 
+with time travel.
+Code versioning 
+with GIT integration.
+Model lifecycle 
+management with 
+model registry.
+
+--- PAGE 16 ---
+MLOPS – PERSONAS
+16
+• Tasked with finding data-driven solutions to business problems.
+• Tasks: data wrangling, statistical analysis, data visualization and applying machine learning. While the primary
+purpose of data science is to explore data and build models, often a large portion of time is spent manipulating
+data to suit the use case.
+DATA SCIENTIST
+DATA ENGINEER
+• Responsible for the infrastructure that ensures data is stored and available for data scientists.
+• In charge of building the systems that ingest raw data from various sources and store it in a centralized data
+lake.
+• Data engineers often also build other data warehouses that derive data from the data lake but transform it so that it
+is more
+• Rather new role that is becoming increasingly relevant as companies push to get real-world value from machine
+learning. ML Engineers take the theoretical concepts explored by Data Scientists and build them into a production-
+scale system.
+• Software engineering knowledge such as continuous integration (CI) and continuous delivery (CD) is essential.
+• They tackle automating and scaling model training, testing models before deployment and deploying and monitoring
+models in production. Code rewrite and/or restructure code is a must.
+ML ENGINEER
+• Combine software engineering and cloud infrastructure knowledge.
+• In machine learning projects, DevOps is the connection between the ML model and the end-user application..
+• They are in charge to ensure the ML models deployed don’t degrade the scalability, stability and responsiveness of
+the end-user application.DEVOPS ENGINEER
+
+--- PAGE 17 ---
+MLOPS – LIFECYCLE
+17
+Model Building
+ Model Evaluation
+ Productionize 
+Model 
+ Test and Deploy
+ Monitor 
+Data Ops
+Data CodeModel
+Data Inputs 
+ Training Data
+ Test Data
+ Metrics
+Production Model
+Test Data
+ Production Data
+Code and Model 
+Deployment
+Training code
+Candidate Model(s)
+ Chosen Model
+CI/CD Pipeline
+ Test Code
+Metrics
+Drift Detection
+MLOps provides a framework that addresses the full life cycle of ML models including development, testing, deployment and mon itoring that 
+fulfills the needs of a classic CI/CD process and operation of the deployed machine learning system
+
+--- PAGE 18 ---
+MLOPS – DEPLOYMENT MODELS
+18
+DEV environment QA/ PRE-PROD environment PROD environment
+DEPLOY MODELS
+DEPLOY CODE
+DEV environment QA/ PRE-PROD environment PROD environment
+• The model artifact is generated by training code in the
+developmentenvironment.
+• The artifact is then pushed to the QA/ testing area,
+before finally being deployed into production.
+• Limitation: In real life DEV environments can’t use
+production data. Automated model retraining is not
+supported.
+• Application code is developed in the DEV environment,
+and this code is moved to QA/testing and then
+production.
+• Models are trained in each environment.
+• Allows training on production data while respecting
+access controls.
+• Safer to set up automated retraining since code goes
+through testing.
+
+--- PAGE 19 ---
+MLOPS WORKING SESSION – 35’
+19
+Goal: Your Forecasting Model Is Going Live
+Time: 15 minutes
+Work in small teams -> 20 mins to share ideas
+Scenario: The forecasting engine has been running successfully in production for six months. All DataOps checks passed: data 
+arrived on time, no missing files, no schema issues, no pipeline failures. However, forecast accuracy has dropped from 85% to 60%. 
+Your team is responsible for investigating the problem.
+Your Task  - Split into 5 groups, e ach group will discuss one question and prepare a 2-minute answer.
+Group 1:Customer purchasing patterns have changed significantly compared to the data used for training
+Questions: How would you detect this? What metrics would you monitor? 
+Group 2: Customer behavior has changed because of a market event, inflation, new competitors, or a major promotion 
+strategy change
+Questions: Why might the model no longer be valid? When should the model be retrained?
+Group 3: A new feature engineering release was deployed one month ago
+Questions: How would you determine whether the new release caused the issue? What versioning controls should be in place? 
+Group 4: The model continues to run successfully every week.
+Questions: What KPIs would you monitor? What thresholds would trigger an alert? 
+Group 5: The model was trained six months ago
+Questions: How often should retraining occur? Should retraining be time -based or performance -based?
+
+--- PAGE 20 ---
+MLOPS WORKING SESSION – PROPOSED SOLUTION
+20
+Group Incident Proposed Solution
+Group 1 Data Drift– Customer purchasing patterns have changed 
+significantly compared to the data used for training.
+Monitor feature distributions and compare production data with training data. Use drift 
+detection metrics and dashboards. If significant drift is detected, investigate the cause 
+and consider retraining the model.
+Group 2
+Concept Drift– Customer behavior changed due to 
+inflation, new competitors, or changes in promotion 
+strategy.
+Monitor forecast accuracy and bias over time. Even if input data looks similar, 
+relationships between inputs and demand may have changed. Retrain, recalibrate, or 
+redesign the model when performance deteriorates.
+Group 3 Code & Feature Engineering Changes– A new feature 
+engineering release was deployed one month ago.
+Use Git versioning, model registries, experiment tracking, and CI/CD pipelines. 
+Compare model performance before and after the release and rollback if the 
+degradation is linked to the new code version.
+Group 4 Monitoring & Alerting– The model continues to run 
+successfully every week.
+Monitor forecast accuracy, bias, drift metrics, runtime failures, missing predictions, and 
+business KPIs. Define thresholds that automatically trigger alerts and investigations.
+Group 5 Retraining Strategy– The model was trained six months 
+ago.
+Establish retraining policies based on time (e.g., monthly), performance thresholds 
+(accuracy below target), or drift detection. Validate new models before deployment and 
+keep the ability to rollback to previous versions.
