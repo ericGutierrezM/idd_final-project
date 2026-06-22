@@ -12,7 +12,7 @@ from src.config import (
     FORECAST_START,
 )
 from src.data import load_and_prepare_data
-from src.features import add_features, LGBM_FEATURES
+from src.features import add_features, MODEL_FEATURES
 from src.models import normalize_model_name, select_model_predictions
 from src.validation import (
     roundtrip_validate_csv,
@@ -51,7 +51,7 @@ def generate_forecast(
     featured_history = add_features(raw_history)
     future_rows, forecast_times = _future_feature_rows(raw_history)
 
-    future_has_nan = future_rows[LGBM_FEATURES].isna().any().any()
+    future_has_nan = future_rows[MODEL_FEATURES].isna().any().any()
     used_fallback = False
     served_model = selected_model
     fallback_reason = None

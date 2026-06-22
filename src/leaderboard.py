@@ -9,12 +9,12 @@ from src.cv import get_cv_folds
 from src.data import load_and_prepare_data
 from src.features import add_features
 from src.metrics import evaluate
-from src.models import normalize_model_name, predict_hybrid, predict_lgbm, predict_naive
+from src.models import normalize_model_name, predict_hybrid, predict_histgbm, predict_naive
 
 
 MODEL_PREDICTORS = {
     "naive": predict_naive,
-    "lightgbm": predict_lgbm,
+    "histgbm": predict_histgbm,
     "hybrid": predict_hybrid,
 }
 

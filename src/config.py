@@ -10,18 +10,18 @@ ZERO_LAG_THRESHOLD = 2
 
 DEFAULT_SERVED_MODEL = "hybrid"
 DEFAULT_FALLBACK_MODEL = "naive"
-DEFAULT_LEADERBOARD_MODELS = ("naive", "lightgbm", "hybrid")
+DEFAULT_LEADERBOARD_MODELS = ("naive", "histgbm", "hybrid")
 
-LGBM_PARAMS = {
-    "objective": "tweedie",
-    "tweedie_variance_power": 1.5,
-    "n_estimators": 1000,
-    "learning_rate": 0.03,
-    "num_leaves": 63,
-    "min_child_samples": 20,
-    "subsample": 0.8,
-    "colsample_bytree": 0.8,
+# HistGradientBoostingRegressor — sklearn's native gradient boosting.
+# Poisson loss is appropriate for non-negative count data (analogous to
+# LightGBM Tweedie). Handles NaN features natively, no extra C library needed.
+HISTGBM_PARAMS = {
+    "loss": "poisson",
+    "max_iter": 500,
+    "learning_rate": 0.05,
+    "max_leaf_nodes": 63,
+    "min_samples_leaf": 20,
+    "l2_regularization": 0.1,
     "random_state": 42,
-    "verbose": -1,
 }
 

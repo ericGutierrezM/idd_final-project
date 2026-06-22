@@ -1,0 +1,11 @@
+{
+  "env": "test",
+  "input_bucket": "<your-bucket-name>",
+  "train_data_key": "test/input/train_data.csv",
+  "test_mock_key": "test/input/test_data_mock.csv",
+  "output_latest_key": "test/outputs/latest/predictions.csv",
+  "output_snapshot_prefix": "test/outputs/snapshots/",
+  "model_name": "hybrid",
+  "fallback_model": "naive",
+  "run_official_checker": true
+}

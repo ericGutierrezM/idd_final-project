@@ -27,7 +27,7 @@ HOLIDAYS = pd.to_datetime(
     ]
 )
 
-LGBM_FEATURES = [
+MODEL_FEATURES = [
     "hour",
     "dayofweek",
     "trend",
