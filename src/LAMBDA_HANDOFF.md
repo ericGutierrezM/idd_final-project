@@ -4,6 +4,26 @@ This folder is the runtime code for the AWS Lambda submission path.
 
 We are assuming the classroom Lambda environment should be treated as **Python 3.8**.
 
+This `src/` folder is intentionally simplified for handoff:
+
+- one deployment file for AWS
+- one short handoff note
+- no extra leaderboard, CLI, or research-time modules
+
+Use this handler:
+
+```text
+src.lambda_app.lambda_handler
+```
+
+That file contains only the logic needed to:
+
+- read `train_data.csv` from S3
+- build features
+- run one model
+- validate the forecast CSV
+- write `predictions.csv` back to S3
+
 ## What this code is for
 
 The Lambda should:
@@ -24,27 +44,24 @@ This matches the class pattern shown in the AWS slides:
 Handler:
 
 ```text
-src.aws_lambda_handler.lambda_handler
+src.lambda_app.lambda_handler
 ```
 
-Main flow:
+Main file:
 
-- `src/aws_lambda_handler.py`
+- `src/lambda_app.py`
   - AWS entrypoint
-  - downloads files from S3 to Lambda temp storage
-  - calls forecast code
-  - uploads output CSV back to S3
-- `src/forecast.py`
-  - runs the forecast workflow
-- `src/data.py`, `src/features.py`, `src/models.py`, `src/validation.py`
-  - reusable forecasting logic
+  - S3 download and upload logic
+  - feature engineering
+  - one deployed model
+  - output validation
 
 ## Expected AWS setup
 
 Lambda:
 
 - Runtime: `Python 3.8`
-- Handler: `src.aws_lambda_handler.lambda_handler`
+- Handler: `src.lambda_app.lambda_handler`
 - Timeout: give it enough time to train and write output
 - Layers: classroom `pandas` and `sklearn` layers
 
@@ -72,23 +89,17 @@ Minimum required values:
 Optional values:
 
 - `TEST_MOCK_KEY`
-- `MODEL_NAME`
-- `FALLBACK_MODEL`
 - `RUN_OFFICIAL_CHECKER`
-- `ENV`
 
 ## Recommended test event
 
 ```json
 {
-  "env": "test",
   "input_bucket": "your-bucket-name",
   "train_data_key": "train_data.csv",
   "test_mock_key": "test_data_mock.csv",
   "output_latest_key": "predictions/predictions.csv",
   "output_snapshot_prefix": "predictions/history/",
-  "model_name": "hybrid",
-  "fallback_model": "naive",
   "run_official_checker": true
 }
 ```
@@ -130,7 +141,7 @@ That is the intended runtime package.
 2. Confirm the runtime is `Python 3.8`.
 3. Confirm the `pandas` and `sklearn` layers are attached.
 4. Upload `build/lambda_deployment.zip`.
-5. Set the handler to `src.aws_lambda_handler.lambda_handler`.
+5. Set the handler to `src.lambda_app.lambda_handler`.
 6. Upload `train_data.csv` to the team bucket.
 7. Upload `test_data_mock.csv` too if they want to test the checker path.
 8. Add the environment variables or paste the test event above.
@@ -143,8 +154,6 @@ The Lambda response should return a JSON body with fields like:
 
 - `status`
 - `selected_model`
-- `served_model`
-- `used_fallback`
 - `row_count`
 - `output_latest_key`
 - `output_snapshot_key`
@@ -167,10 +176,4 @@ So if something fails in AWS, the most likely causes are:
 
 ## Best first fallback if upload fails
 
-If the `hybrid` path has an issue in AWS, try:
-
-- keep the same code package
-- set `model_name` to `naive`
-- keep `fallback_model` as `naive`
-
-That gives the simplest possible cloud run while preserving the same S3/Lambda architecture.
+If something fails in AWS, first debug the packaging, handler path, and S3 permissions before changing the model logic.
