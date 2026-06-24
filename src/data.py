@@ -1,11 +1,12 @@
 from __future__ import annotations
 
 from pathlib import Path
+from typing import Union
 
 import pandas as pd
 
 
-def load_and_prepare_data(path: str | Path) -> pd.DataFrame:
+def load_and_prepare_data(path: Union[str, Path]) -> pd.DataFrame:
     df = pd.read_csv(path)
     df["time"] = pd.to_datetime(df["time"])
     df = df.sort_values("time").reset_index(drop=True)
@@ -15,4 +16,3 @@ def load_and_prepare_data(path: str | Path) -> pd.DataFrame:
     df["orders"] = df["orders"].fillna(0.0)
     df["city"] = df["city"].ffill()
     return df
-

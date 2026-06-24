@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import importlib.util
 from pathlib import Path
+from typing import Optional, Union
 
 import pandas as pd
 from pandas.api.types import is_datetime64_ns_dtype, is_float_dtype
@@ -28,7 +29,7 @@ def validate_predictions_format(predictions: pd.DataFrame) -> None:
         raise AssertionError("Wrong end")
 
 
-def roundtrip_validate_csv(output_path: str | Path) -> pd.DataFrame:
+def roundtrip_validate_csv(output_path: Union[str, Path]) -> pd.DataFrame:
     check = pd.read_csv(output_path, parse_dates=["time"])
     check["time"] = check["time"].astype("datetime64[ns]")
     if not is_float_dtype(check["preds"]):
@@ -38,7 +39,11 @@ def roundtrip_validate_csv(output_path: str | Path) -> pd.DataFrame:
     return check
 
 
-def run_official_checker(predictions: pd.DataFrame, test_mock_path: str | Path, checker_path: str | Path | None = None) -> None:
+def run_official_checker(
+    predictions: pd.DataFrame,
+    test_mock_path: Union[str, Path],
+    checker_path: Optional[Union[str, Path]] = None,
+) -> None:
     checker_file = Path(checker_path) if checker_path else Path(__file__).resolve().parent.parent / "check_output_format.py"
     if not checker_file.exists():
         raise FileNotFoundError(f"Checker not found at {checker_file}")
@@ -49,4 +54,3 @@ def run_official_checker(predictions: pd.DataFrame, test_mock_path: str | Path, 
     module = importlib.util.module_from_spec(spec)
     spec.loader.exec_module(module)
     module.check_output_format(predictions, str(test_mock_path))
-

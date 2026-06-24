@@ -3,6 +3,7 @@ from __future__ import annotations
 import numpy as np
 import pandas as pd
 from sklearn.ensemble import HistGradientBoostingRegressor
+from typing import Optional
 
 from src.config import HISTGBM_PARAMS, HORIZON
 from src.features import MODEL_FEATURES, add_features
@@ -21,7 +22,7 @@ def normalize_model_name(model_name: str) -> str:
     return aliases[normalized]
 
 
-def predict_naive(train: pd.DataFrame, val: pd.DataFrame | None = None, horizon: int = HORIZON) -> np.ndarray:
+def predict_naive(train: pd.DataFrame, val: Optional[pd.DataFrame] = None, horizon: int = HORIZON) -> np.ndarray:
     return np.maximum(train.tail(horizon)["orders"].values, 0)
 
 

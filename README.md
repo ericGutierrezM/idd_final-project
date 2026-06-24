@@ -9,6 +9,23 @@ This project builds a cloud-deployable forecasting workflow for Glovo hourly ord
 
 For the assignment, every Sunday at `23:59` the system should generate forecasts for the next `168` hours, from Monday `00:00` through Sunday `23:00`.
 
+## Instructor Deployment Constraints (updated June 2026)
+
+Gal.la clarified the cloud deliverable requirements:
+
+- **sklearn only** — no LightGBM in the Lambda; the class layer only packages sklearn
+- **Python 3.8** — the pre-deployed Lambda and layer run Python 3.8, not 3.14
+- **Zip + layer deployment** — the sklearn layer is already deployed; we package our code as a zip, not a container
+- **Accuracy is not the focus for the cloud piece** — the goal is code that runs and produces predictions; model quality is Javier's notebook deliverable
+- **Fit under 15 minutes** — the full train + predict cycle must complete within the Lambda timeout
+
+This creates a clean split between two deliverables:
+
+| Deliverable | Owner | Model | Environment |
+|---|---|---|---|
+| Cloud forecast job | Gal.la / cloud track | sklearn-based (zip + layer) | AWS Lambda Python 3.8 |
+| Modeling notebook | Javier | Hybrid (zero_mask + LightGBM Tweedie) | Local notebook |
+
 ## Current Status
 
 We now have two layers in the project:
@@ -20,15 +37,15 @@ We now have two layers in the project:
   - extracted production-oriented Python modules and CLIs
   - reusable logic for data prep, feature engineering, validation, forecasting, and offline model monitoring
 
-The strongest current model remains:
+**Notebook champion:** `Hybrid (zero_mask + LightGBM Tweedie)` — 17.93% SMAPE, beats seasonal naive by 1.30 pp
 
-- `Hybrid (zero_mask + LightGBM Tweedie)`
+**Cloud-served model:** sklearn-based alternative (Ridge or similar hybrid routing) — LightGBM is not available in the deployed Lambda layer
 
-The current production-serving idea is:
+The current cloud-serving plan:
 
-- serve `Hybrid` as the champion model
-- use `Naive` as the runtime fallback if the main model fails
-- recompute an offline leaderboard for `Naive`, `LightGBM`, and `Hybrid` to monitor whether the champion should change
+- serve a sklearn model (e.g. `Hybrid (zero_mask + Ridge)`) as the Lambda model
+- use `Naive` as the runtime fallback if the sklearn model fails
+- the notebook leaderboard (Naive / LightGBM / Hybrid) remains the accuracy reference
 
 ## What We Have Done
 
@@ -193,20 +210,42 @@ This is the simplest architecture that still aligns well with the course:
 - offline leaderboard monitoring for reevaluation
 - cloud-native scheduling and storage
 
-If Lambda packaging becomes difficult because of dependencies like `lightgbm`, the fallback compute plan is:
+The sklearn layer is already deployed in the class account (Python 3.8). Our code is packaged as a zip and attached to that Lambda — no container needed.
 
-- container-based Lambda
-- or small batch compute on EC2 / SageMaker
+LightGBM is only used in the local notebook. It is not part of the cloud deployment path.
 
-The architecture story stays the same even if the compute service changes.
+## Python 3.8 compatibility notes
+
+For the Lambda deployment path, the repo is now pinned to a Python 3.8-compatible stack:
+
+- `numpy>=1.24.4,<1.25.0`
+- `pandas>=1.5.3,<1.6.0`
+- `scikit-learn>=1.3.2,<1.4.0`
+
+The served cloud model path in `src/` uses sklearn APIs that are available in that range, and the type hints were kept Python 3.8-safe.
+
+## Build the Lambda zip
+
+Package only the runtime code with:
+
+```powershell
+.\scripts\build_lambda_zip.ps1
+```
+
+That creates `build/lambda_deployment.zip` with:
+
+- `src/`
+- `check_output_format.py`
 
 ## What We Plan To Do Next
 
 ### Immediate next steps
 
-- add an AWS-specific handler that reads training data from S3 and writes outputs back to S3
-- decide whether to deploy with plain Lambda, Lambda container image, or a small batch fallback
-- define `dev`, `test`, and `prod` S3 prefixes or paths
+- implement and test a sklearn-based Lambda model (e.g. `Hybrid (zero_mask + Ridge)`) locally on Python 3.8
+- fix any Python 3.8 incompatibilities in `src/` (e.g. `str | None` union syntax needs `Optional[str]` or `from __future__ import annotations`)
+- make the LightGBM import in `src/models.py` conditional so the zip does not fail at import time
+- package `src/` as a zip and deploy to the class Lambda
+- define `dev`, `test`, and `prod` S3 prefixes
 
 ### Submission-focused next steps
 

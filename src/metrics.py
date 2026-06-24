@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import numpy as np
+from typing import Dict
 
 
 def smape(actual, pred) -> float:
@@ -17,7 +18,7 @@ def mse(actual, pred) -> float:
     return np.mean((np.array(actual) - np.array(pred)) ** 2)
 
 
-def evaluate(actual, pred) -> dict[str, float]:
+def evaluate(actual, pred) -> Dict[str, float]:
     pred_clipped = np.maximum(pred, 0)
     return {
         "mse": mse(actual, pred_clipped),

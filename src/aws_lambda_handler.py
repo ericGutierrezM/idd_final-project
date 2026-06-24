@@ -6,7 +6,7 @@ import os
 import tempfile
 from datetime import datetime, timezone
 from pathlib import Path
-from typing import Any
+from typing import Any, Dict, Optional
 
 import boto3
 
@@ -22,7 +22,7 @@ TEST_MOCK_LOCAL_PATH = TMP_DIR / "test_data_mock.csv"
 PREDICTIONS_LOCAL_PATH = TMP_DIR / "predictions.csv"
 
 
-def _env_or_default(event: dict[str, Any], key: str, default: str | None = None) -> str | None:
+def _env_or_default(event: Dict[str, Any], key: str, default: Optional[str] = None) -> Optional[str]:
     value = event.get(key)
     if value is not None:
         return str(value)
@@ -33,7 +33,7 @@ def _env_or_default(event: dict[str, Any], key: str, default: str | None = None)
     return default
 
 
-def _bool_env_or_default(event: dict[str, Any], key: str, default: bool = False) -> bool:
+def _bool_env_or_default(event: Dict[str, Any], key: str, default: bool = False) -> bool:
     value = event.get(key)
     if value is not None:
         if isinstance(value, bool):
@@ -50,7 +50,7 @@ def _normalize_prefix(prefix: str) -> str:
     return prefix if prefix.endswith("/") else f"{prefix}/"
 
 
-def _load_config(event: dict[str, Any]) -> dict[str, Any]:
+def _load_config(event: Dict[str, Any]) -> Dict[str, Any]:
     env_name = _env_or_default(event, "env", "test")
     input_bucket = _env_or_default(event, "input_bucket")
     train_data_key = _env_or_default(event, "train_data_key")
@@ -84,7 +84,7 @@ def _load_config(event: dict[str, Any]) -> dict[str, Any]:
     }
 
 
-def lambda_handler(event: dict[str, Any] | None, context: Any) -> dict[str, Any]:
+def lambda_handler(event: Optional[Dict[str, Any]], context: Any) -> Dict[str, Any]:
     event = event or {}
     try:
         config = _load_config(event)
@@ -95,7 +95,7 @@ def lambda_handler(event: dict[str, Any] | None, context: Any) -> dict[str, Any]
         bucket = config["input_bucket"]
         s3.download_file(bucket, config["train_data_key"], str(TRAIN_LOCAL_PATH))
 
-        test_mock_path: str | None = None
+        test_mock_path: Optional[str] = None
         if config["run_official_checker"]:
             test_mock_key = config["test_mock_key"]
             if not test_mock_key:

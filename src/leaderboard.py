@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 from pathlib import Path
+from typing import Dict, List, Optional, Tuple, Union
 
 import pandas as pd
 
@@ -20,15 +21,15 @@ MODEL_PREDICTORS = {
 
 
 def compute_leaderboard(
-    input_path: str | Path,
-    output_path: str | Path | None = None,
-    models: tuple[str, ...] = DEFAULT_LEADERBOARD_MODELS,
+    input_path: Union[str, Path],
+    output_path: Optional[Union[str, Path]] = None,
+    models: Tuple[str, ...] = DEFAULT_LEADERBOARD_MODELS,
 ) -> pd.DataFrame:
     raw_history = load_and_prepare_data(input_path)
     featured_history = add_features(raw_history)
     folds = get_cv_folds(featured_history)
 
-    rows: list[dict[str, object]] = []
+    rows: List[Dict[str, object]] = []
     for model_name in models:
         normalized = normalize_model_name(model_name)
         predictor = MODEL_PREDICTORS[normalized]
@@ -54,4 +55,3 @@ def compute_leaderboard(
     if output_path is not None:
         leaderboard.to_csv(output_path, index=False)
     return leaderboard
-

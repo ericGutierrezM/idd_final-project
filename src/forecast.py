@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 from pathlib import Path
+from typing import Dict, Optional, Tuple, Union
 
 import numpy as np
 import pandas as pd
@@ -21,14 +22,14 @@ from src.validation import (
 )
 
 
-def build_forecast_frame(history_df: pd.DataFrame) -> tuple[pd.DatetimeIndex, pd.DataFrame]:
+def build_forecast_frame(history_df: pd.DataFrame) -> Tuple[pd.DatetimeIndex, pd.DataFrame]:
     forecast_index = pd.date_range(FORECAST_START, FORECAST_END, freq="h")
     city = history_df["city"].iloc[-1] if not history_df["city"].isna().all() else "BCN"
     forecast_df = pd.DataFrame({"time": forecast_index, "orders": np.nan, "city": city})
     return forecast_index, forecast_df
 
 
-def _future_feature_rows(raw_history: pd.DataFrame) -> tuple[pd.DataFrame, pd.DataFrame]:
+def _future_feature_rows(raw_history: pd.DataFrame) -> Tuple[pd.DataFrame, pd.DataFrame]:
     forecast_index, forecast_df = build_forecast_frame(raw_history)
     full = pd.concat([raw_history, forecast_df]).reset_index(drop=True)
     full = add_features(full)
@@ -37,13 +38,13 @@ def _future_feature_rows(raw_history: pd.DataFrame) -> tuple[pd.DataFrame, pd.Da
 
 
 def generate_forecast(
-    input_path: str | Path,
+    input_path: Union[str, Path],
     model_name: str = DEFAULT_SERVED_MODEL,
     fallback_model: str = DEFAULT_FALLBACK_MODEL,
-    output_path: str | Path | None = None,
+    output_path: Optional[Union[str, Path]] = None,
     run_checker: bool = False,
-    test_mock_path: str | Path | None = None,
-) -> tuple[pd.DataFrame, dict[str, object]]:
+    test_mock_path: Optional[Union[str, Path]] = None,
+) -> Tuple[pd.DataFrame, Dict[str, object]]:
     selected_model = normalize_model_name(model_name)
     fallback = normalize_model_name(fallback_model)
 
@@ -83,7 +84,7 @@ def generate_forecast(
             raise ValueError("test_mock_path is required when run_checker=True")
         run_official_checker(predictions, test_mock_path)
 
-    run_meta: dict[str, object] = {
+    run_meta: Dict[str, object] = {
         "selected_model": selected_model,
         "served_model": served_model,
         "fallback_model": fallback,
@@ -95,4 +96,3 @@ def generate_forecast(
         "future_feature_nan": bool(future_has_nan),
     }
     return predictions, run_meta
-

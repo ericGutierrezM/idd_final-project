@@ -1,12 +1,13 @@
 from __future__ import annotations
 
 import pandas as pd
+from typing import List, Tuple
 
 from src.config import HORIZON, N_FOLDS
 
 
-def get_cv_folds(df: pd.DataFrame, n_folds: int = N_FOLDS) -> list[tuple[pd.DataFrame, pd.DataFrame]]:
-    folds: list[tuple[pd.DataFrame, pd.DataFrame]] = []
+def get_cv_folds(df: pd.DataFrame, n_folds: int = N_FOLDS) -> List[Tuple[pd.DataFrame, pd.DataFrame]]:
+    folds: List[Tuple[pd.DataFrame, pd.DataFrame]] = []
     last = df["time"].max()
     for k in range(n_folds, 0, -1):
         val_end = last - pd.Timedelta(hours=(k - 1) * HORIZON)
@@ -17,4 +18,3 @@ def get_cv_folds(df: pd.DataFrame, n_folds: int = N_FOLDS) -> list[tuple[pd.Data
         if len(val) == HORIZON and len(train) >= HORIZON * 2:
             folds.append((train, val))
     return folds
-
