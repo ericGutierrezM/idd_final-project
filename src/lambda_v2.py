@@ -15,8 +15,8 @@ from sklearn.ensemble import HistGradientBoostingRegressor
 LOGGER = logging.getLogger(__name__)
 LOGGER.setLevel(logging.INFO)
 
-FORECAST_START = pd.Timestamp("2022-01-24 00:00:00")
-FORECAST_END = pd.Timestamp("2022-01-30 23:00:00")
+ASSIGNMENT_FORECAST_START = pd.Timestamp("2022-01-24 00:00:00")
+ASSIGNMENT_FORECAST_END = pd.Timestamp("2022-01-30 23:00:00")
 HORIZON = 168
 
 DEFAULT_BUCKET = "eric-gutierrez-moreno-bucket-idd"
@@ -41,6 +41,41 @@ MODEL_FEATURES = [
 TMP_DIR = Path(os.getenv("LAMBDA_TMP_DIR", tempfile.gettempdir()))
 TRAIN_LOCAL_PATH = TMP_DIR / "train_data.csv"
 PREDICTIONS_LOCAL_PATH = TMP_DIR / "predictions.csv"
+
+
+def _env_or_default(event: Dict[str, Any], key: str, default: Optional[str] = None) -> Optional[str]:
+    value = event.get(key)
+    if value is not None:
+        return str(value)
+    env_value = os.getenv(key.upper())
+    if env_value is not None:
+        return env_value
+    return default
+
+
+def _load_config(event: Dict[str, Any]) -> Dict[str, Any]:
+    input_bucket = _env_or_default(event, "input_bucket", DEFAULT_BUCKET)
+    train_data_key = _env_or_default(event, "train_data_key", "train_data.csv")
+    output_latest_key = _env_or_default(event, "output_latest_key", "predictions.csv")
+    output_snapshot_prefix = _env_or_default(event, "output_snapshot_prefix", "snapshots/")
+    forecast_start = _env_or_default(event, "forecast_start")
+    forecast_end = _env_or_default(event, "forecast_end")
+
+    parsed_forecast_start = None if forecast_start is None else pd.Timestamp(forecast_start)
+    parsed_forecast_end = None if forecast_end is None else pd.Timestamp(forecast_end)
+    if (parsed_forecast_start is None) != (parsed_forecast_end is None):
+        raise ValueError("forecast_start and forecast_end must be provided together")
+
+    snapshot_prefix = output_snapshot_prefix if str(output_snapshot_prefix).endswith("/") else "{}/".format(output_snapshot_prefix)
+
+    return {
+        "input_bucket": str(input_bucket),
+        "train_data_key": str(train_data_key),
+        "output_latest_key": str(output_latest_key),
+        "output_snapshot_prefix": snapshot_prefix,
+        "forecast_start": parsed_forecast_start,
+        "forecast_end": parsed_forecast_end,
+    }
 
 def get_part_of_day(hour: int) -> int:
     if 5 <= hour < 11:
@@ -77,19 +112,57 @@ def add_features(df: pd.DataFrame) -> pd.DataFrame:
     
     return featured
 
-def build_forecast_frame(history_df: pd.DataFrame) -> pd.DataFrame:
-    forecast_index = pd.date_range(FORECAST_START, FORECAST_END, freq="h")
+def determine_forecast_window(
+    history_df: pd.DataFrame,
+    forecast_start: Optional[pd.Timestamp],
+    forecast_end: Optional[pd.Timestamp],
+) -> tuple[pd.Timestamp, pd.Timestamp]:
+    if forecast_start is not None and forecast_end is not None:
+        start = forecast_start
+        end = forecast_end
+    else:
+        latest_time = pd.Timestamp(history_df["time"].max())
+        next_hour = latest_time + pd.Timedelta(hours=1)
+        start = next_hour.normalize()
+        end = start + pd.Timedelta(hours=HORIZON - 1)
+
+    expected_end = start + pd.Timedelta(hours=HORIZON - 1)
+    if end != expected_end:
+        raise ValueError(
+            "Forecast window must span exactly {} hours; got {} to {}".format(HORIZON, start, end)
+        )
+    if start.hour != 0 or end.hour != 23:
+        raise ValueError("Forecast window must run from 00:00 to 23:00")
+    if start.dayofweek != 0 or end.dayofweek != 6:
+        raise ValueError("Forecast window must run from Monday to Sunday")
+    return start, end
+
+
+def build_forecast_frame(
+    history_df: pd.DataFrame,
+    forecast_start: pd.Timestamp,
+    forecast_end: pd.Timestamp,
+) -> pd.DataFrame:
+    forecast_index = pd.date_range(forecast_start, forecast_end, freq="h")
     city = history_df["city"].iloc[-1] if not history_df["city"].isna().all() else "BCN"
     return pd.DataFrame({"time": forecast_index, "orders": np.nan, "city": city})
 
-def build_future_rows(raw_history: pd.DataFrame) -> pd.DataFrame:
-    forecast_df = build_forecast_frame(raw_history)
+def build_future_rows(
+    raw_history: pd.DataFrame,
+    forecast_start: pd.Timestamp,
+    forecast_end: pd.Timestamp,
+) -> pd.DataFrame:
+    forecast_df = build_forecast_frame(raw_history, forecast_start, forecast_end)
     forecast_index = forecast_df["time"]
     full = pd.concat([raw_history, forecast_df]).reset_index(drop=True)
     full = add_features(full)
     return full[full["time"].isin(forecast_index)].copy()
 
-def validate_predictions_format(predictions: pd.DataFrame) -> None:
+def validate_predictions_format(
+    predictions: pd.DataFrame,
+    forecast_start: pd.Timestamp,
+    forecast_end: pd.Timestamp,
+) -> None:
     if len(predictions) != HORIZON:
         raise AssertionError(f"Expected {HORIZON} rows, got {len(predictions)}")
     if list(predictions.columns) != ["time", "preds"]:
@@ -98,11 +171,21 @@ def validate_predictions_format(predictions: pd.DataFrame) -> None:
         raise AssertionError("preds must be float64")
     if not is_datetime64_ns_dtype(predictions["time"]):
         raise AssertionError("time must be datetime64[ns]")
+    if predictions["time"].min() != forecast_start:
+        raise AssertionError("Wrong start")
+    if predictions["time"].max() != forecast_end:
+        raise AssertionError("Wrong end")
 
-def generate_forecast(input_path: Path, output_path: Path) -> int:
+def generate_forecast(
+    input_path: Path,
+    output_path: Path,
+    forecast_start: Optional[pd.Timestamp],
+    forecast_end: Optional[pd.Timestamp],
+) -> Dict[str, Any]:
     raw_history = load_and_prepare_data(input_path)
+    resolved_forecast_start, resolved_forecast_end = determine_forecast_window(raw_history, forecast_start, forecast_end)
     featured_history = add_features(raw_history)
-    future_rows = build_future_rows(raw_history)
+    future_rows = build_future_rows(raw_history, resolved_forecast_start, resolved_forecast_end)
 
     train_ready = featured_history.dropna(subset=MODEL_FEATURES)
     model = HistGradientBoostingRegressor(**HISTGBM_PARAMS)
@@ -112,43 +195,51 @@ def generate_forecast(input_path: Path, output_path: Path) -> int:
     safe_preds = np.maximum(raw_preds, 0)
 
     predictions = pd.DataFrame({
-        "time": pd.date_range(FORECAST_START, FORECAST_END, freq="h").astype("datetime64[ns]"),
+        "time": pd.date_range(resolved_forecast_start, resolved_forecast_end, freq="h").astype("datetime64[ns]"),
         "preds": np.asarray(safe_preds, dtype="float64"),
     })
 
-    validate_predictions_format(predictions)
+    validate_predictions_format(predictions, resolved_forecast_start, resolved_forecast_end)
     predictions.to_csv(output_path, index=False)
     
-    return len(predictions)
+    return {
+        "row_count": len(predictions),
+        "forecast_start": resolved_forecast_start.isoformat(),
+        "forecast_end": resolved_forecast_end.isoformat(),
+    }
 
 def lambda_handler(event: Optional[Dict[str, Any]], context: Any) -> Dict[str, Any]:
+    event = event or {}
     try:
-        bucket_name = os.getenv("INPUT_BUCKET", DEFAULT_BUCKET)
-        train_key = os.getenv("TRAIN_DATA_KEY", "train_data.csv")
-        output_key = os.getenv("OUTPUT_LATEST_KEY", "predictions.csv")
+        config = _load_config(event)
         
         s3 = boto3.client("s3")
 
-        LOGGER.info(f"Downloading {train_key} from {bucket_name}")
-        s3.download_file(bucket_name, train_key, str(TRAIN_LOCAL_PATH))
+        LOGGER.info(f"Downloading {config['train_data_key']} from {config['input_bucket']}")
+        s3.download_file(config["input_bucket"], config["train_data_key"], str(TRAIN_LOCAL_PATH))
 
         LOGGER.info("Generating predictions...")
-        row_count = generate_forecast(
+        run_meta = generate_forecast(
             input_path=TRAIN_LOCAL_PATH,
-            output_path=PREDICTIONS_LOCAL_PATH
+            output_path=PREDICTIONS_LOCAL_PATH,
+            forecast_start=config["forecast_start"],
+            forecast_end=config["forecast_end"],
         )
 
-        LOGGER.info(f"Uploading {output_key} to {bucket_name}")
-        s3.upload_file(str(PREDICTIONS_LOCAL_PATH), bucket_name, output_key)
+        LOGGER.info(f"Uploading {config['output_latest_key']} to {config['input_bucket']}")
+        s3.upload_file(str(PREDICTIONS_LOCAL_PATH), config["input_bucket"], config["output_latest_key"])
         
         run_ts = datetime.now(timezone.utc).strftime("%Y%m%dT%H%M%SZ")
-        snapshot_key = f"snapshots/{run_ts}_predictions.csv"
-        s3.upload_file(str(PREDICTIONS_LOCAL_PATH), bucket_name, snapshot_key)
+        snapshot_key = f"{config['output_snapshot_prefix']}{run_ts}_predictions.csv"
+        s3.upload_file(str(PREDICTIONS_LOCAL_PATH), config["input_bucket"], snapshot_key)
 
         result = {
             "status": "success",
-            "row_count": row_count,
-            "output_latest_key": f"s3://{bucket_name}/{output_key}"
+            "row_count": run_meta["row_count"],
+            "forecast_start": run_meta["forecast_start"],
+            "forecast_end": run_meta["forecast_end"],
+            "output_latest_key": f"s3://{config['input_bucket']}/{config['output_latest_key']}",
+            "output_snapshot_key": f"s3://{config['input_bucket']}/{snapshot_key}",
         }
         return {"statusCode": 200, "body": json.dumps(result)}
 
